@@ -19,12 +19,19 @@ export default defineConfig({
     }),
   ],
   build: {
-    target: 'ES2022',
+    target: 'esnext',
     outDir: 'dist',
     minify: false,
     cssCodeSplit: false,
     rollupOptions: {
-      preserveEntrySignatures: 'exports-only',
+      output: {
+        // Важно для совместимости c nextjs react
+        format: 'esm',
+        globals: {
+          react: 'React',
+          'react-dom': 'ReactDOM',
+        },
+      },
     },
   },
   server: {
