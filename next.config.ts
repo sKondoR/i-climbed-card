@@ -19,10 +19,10 @@ module.exports = {
             react: { singleton: true, requiredVersion: false },
             'react-dom': { singleton: true, requiredVersion: false },
           },
-          extraOptions: {
-            exposePages: false,
-            useManifestFormat: true,
-          },
+          // extraOptions: {
+          //   exposePages: false,
+          //   useManifestFormat: true,
+          // },
         }),
       );
     }
