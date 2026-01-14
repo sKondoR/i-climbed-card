@@ -18,7 +18,7 @@ export default defineConfig({
     }),
   ],
   build: {
-    target: 'esnext',
+    target: 'chrome89',
     outDir: 'dist',
     minify: false,
     cssCodeSplit: false,
