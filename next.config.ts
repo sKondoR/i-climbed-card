@@ -12,7 +12,8 @@ module.exports = {
           name: 'microfrontend',
           filename: 'static/chunks/remoteEntry.js',
           exposes: {
-            './test': './src/ui/EditImage',
+            './EditImage': './src/ui/EditImage',
+            './test': './src/pages/test',
           },
           shared: {
             react: { singleton: true, requiredVersion: false },
