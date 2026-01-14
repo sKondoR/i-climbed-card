@@ -4,7 +4,7 @@ import type { NextConfig } from 'next';
 
 module.exports = {
   webpack(config: Configuration, options: NextConfig) {
-    if (!options.isServer) {
+    // if (!options.isServer) {
       config.plugins = config.plugins || [];
 
       config.plugins.push(
@@ -24,7 +24,7 @@ module.exports = {
           },
         }),
       );
-    }
+    // }
 
     return config;
   },
