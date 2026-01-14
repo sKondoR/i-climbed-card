@@ -1,5 +1,5 @@
 import React from 'react';
-import { EditImage } from '../ui/EditImage';
+import EditImage from '../ui/EditImage';
 import './globals.css';
 
 export default function HomePage() {
