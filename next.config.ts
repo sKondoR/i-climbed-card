@@ -18,6 +18,8 @@ module.exports = {
           shared: {
             react: { singleton: true, requiredVersion: false },
             'react-dom': { singleton: true, requiredVersion: false },
+            faDownload: { singleton: true, requiredVersion: false },
+            FontAwesomeIcon: { singleton: true, requiredVersion: false },
           },
           // extraOptions: {
           //   exposePages: false,
