@@ -9,13 +9,12 @@ type EditImageProps = {
     region?: string,
     grade: string,
 };
-
-const EditImage = ({
+export default function EditImage ({
     imgSrc = '', // ожидается в формате data:image/png;base64,...
     name = '',
     region = '',
     grade = '',
-}: EditImageProps) => {
+}: EditImageProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [text, setText] = useState('');
   const [textColor, setTextColor] = useState('#ffffff');
@@ -157,4 +156,3 @@ const EditImage = ({
   );
 };
 
-export default EditImage;
