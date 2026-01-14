@@ -1,9 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import federation from '@originjs/vite-plugin-federation';
+import { federation } from '@module-federation/vite';
 import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
-
 
 export default defineConfig({
   base: '/',
