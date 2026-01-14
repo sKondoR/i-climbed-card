@@ -12,11 +12,12 @@
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^7.1.0",
     "@fortawesome/react-fontawesome": "^3.1.1",
-    "@module-federation/vite": "^1.9.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@module-federation/enhanced": "^0.22.1",
+    "@module-federation/vite": "^1.9.4",
     "@originjs/vite-plugin-federation": "^1.4.1",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",

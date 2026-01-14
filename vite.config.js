@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { federation } from '@module-federation/vite';
+import federation from '@originjs/vite-plugin-federation';
 import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
 
@@ -22,16 +22,6 @@ export default defineConfig({
     outDir: 'dist',
     minify: false,
     cssCodeSplit: false,
-    rollupOptions: {
-      output: {
-        // Важно для совместимости c nextjs react
-        format: 'esm',
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-        },
-      },
-    },
   },
   server: {
     port: 3001,
