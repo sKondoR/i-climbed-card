@@ -4,12 +4,13 @@ import { federation } from '@module-federation/vite';
 import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
 
+
 export default defineConfig({
   base: '/',
   plugins: [
     react(),
     federation({
-      name: 'edit-route-image-micro',
+      name: 'microfrontend',
       filename: 'remoteEntry.js',
       exposes: {
         './EditImage': './src/ui/EditImage/EditImage.tsx',
