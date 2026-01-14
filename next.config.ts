@@ -18,10 +18,7 @@ module.exports = {
           shared: {
             react: { singleton: true, requiredVersion: false },
             'react-dom': { singleton: true, requiredVersion: false },
-            '@fortawesome/react-fontawesome': { singleton: true, requiredVersion: false },
-            '@fortawesome/free-solid-svg-icons': { singleton: true, requiredVersion: false },
           },
-          getPublicPath: 'auto',
           extraOptions: {},
         }),
       );
