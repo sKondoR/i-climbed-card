@@ -4,7 +4,7 @@ import type { NextConfig } from 'next';
 
 module.exports = {
   webpack(config: Configuration, options: NextConfig) {
-    // if (!options.isServer) {
+    if (!options.isServer) {
       config.plugins = config.plugins || [];
 
       config.plugins.push(
@@ -12,7 +12,7 @@ module.exports = {
           name: 'microfrontend',
           filename: 'static/chunks/remoteEntry.js',
           exposes: {
-            './EditImage': './src/ui/EditImage',
+            './test': './src/ui/EditImage',
           },
           shared: {
             react: { singleton: true, requiredVersion: false },
@@ -24,7 +24,7 @@ module.exports = {
           },
         }),
       );
-    // }
+    }
 
     return config;
   },
