@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
-import { FontSizeControl } from '../FontSizeControl';
+import FontSizeControl from './FontSizeControl';
 
 type EditImageProps = {
     imgSrc: string,
