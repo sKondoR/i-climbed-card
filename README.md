@@ -1,6 +1,6 @@
 # IClimbedCard microfrontend
 
-🌐 [https://i-climbed-card.vercel.app/](https://edit-route-image-mf.vercel.app/)
+🌐 [https://i-climbed-card.vercel.app/](https://i-climbed-card.vercel.app/)
 
 ## О проекте
 Простая компонента для создания открытки пролаза скалолазательной трассы.<br /><br />
