@@ -26,8 +26,16 @@ module.exports = {
             './test': './src/pages/test',
           },
           shared: {
-            react: { singleton: true, requiredVersion: false },
-            'react-dom': { singleton: true, requiredVersion: false },
+            react: {
+              singleton: true,
+              requiredVersion: false,
+              eager: true,
+            },
+            'react-dom': { 
+              singleton: true,
+              requiredVersion: false,
+              eager: true,
+            },
             '@fortawesome/react-fontawesome': { singleton: true, requiredVersion: false },
             '@fortawesome/free-solid-svg-icons': { singleton: true, requiredVersion: false },
           },
