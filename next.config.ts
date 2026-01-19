@@ -5,10 +5,23 @@ import type { NextConfig } from 'next';
 module.exports = {
   headers: async () => {
     return [
+      // 1. CORS для remoteEntry.js
       {
-        source: '/_next/static/chunks/:path*',
+        source: '/_next/static/chunks/remoteEntry.js',
         headers: [
           { key: 'Access-Control-Allow-Origin', value: '*' },
+        ],
+      },
+      // 2. Глобальные безопасные заголовки
+      {
+        source: '/(.*)', // Применяется ко всем маршрутам
+        headers: [
+          { key: 'Content-Security-Policy', value: "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none';" },
+          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains; preload' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          { key: 'Permissions-Policy', value: 'geolocation=(), camera=(), microphone=()' },
         ],
       },
     ];
