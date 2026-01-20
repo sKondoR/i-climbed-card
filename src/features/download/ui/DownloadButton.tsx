@@ -18,7 +18,7 @@ export const DownloadButton = ({
     return (
         <FontAwesomeIcon
             icon={faDownload}
-            className="text-2xl cursor-pointer text-cyan-700 hover:text-pink-700 mt-1 h-5 w-5" 
+            className="text-2xl cursor-pointer text-cyan-700 hover:text-pink-700 h-5 w-5 mr-5" 
             onClick={handleDownloadImage}
             aria-label={`скачать изображение`}
         />

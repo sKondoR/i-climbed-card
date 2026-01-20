@@ -28,7 +28,7 @@ export function TextControls({
   onPositionChange,
 }: TextControlsProps) {
   return (
-    <div className="flex flex-wrap justify-center mb-3 mt-1 items-center">
+    <>
       {/* Поле ввода текста */}
       <div className="mr-5">
         <input
@@ -97,6 +97,6 @@ export function TextControls({
           aria-label="Цвет текста"
         />
       </div>
-    </div>
+    </>
   );
 }

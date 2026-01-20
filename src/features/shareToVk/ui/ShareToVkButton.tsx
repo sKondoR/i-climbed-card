@@ -18,7 +18,7 @@ export const ShareToVKButton = ({
     return (
         <FontAwesomeIcon
             icon={faShareAlt}
-            className="text-2xl cursor-pointer text-cyan-700 hover:text-pink-700 mt-1 h-5 w-5 ml-5"
+            className="text-2xl cursor-pointer text-cyan-700 hover:text-pink-700 h-5 w-5"
             onClick={handleShareToVK}
             aria-label="поделиться в ВКонтакте"
         />

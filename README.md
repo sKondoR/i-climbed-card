@@ -8,5 +8,12 @@
 Проект реализован с использованием **Module Federation** (Webpack). <br>
 микрофронтенд [i-climbed-card](https://github.com/sKondoR/i-climbed-card) задеплоен на vercel [https://i-climbed-card.vercel.app/](https://i-climbed-card.vercel.app/)
 
+## Env
+```
+NEXT_PRIVATE_LOCAL_WEBPACK=
+NEXT_PUBLIC_IMGBB_API_KEY=
+NEXT_PUBLIC_ICLIMBED_URL=https://i-climbed.vercel.app/
+```
+
 ## Стэк
 NextJS, React, TailwindCSS, nextjs-mf, Canvas

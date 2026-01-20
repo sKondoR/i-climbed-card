@@ -86,7 +86,7 @@ export default function EditImage ({
 
   return (
     <div className="mf-edit-image">
-    <div className="flex flex-wrap justify-center mb-3 mt-1 items-center" >
+      <div className="flex flex-wrap justify-center mb-3 mt-1 items-center" >
         <TextControls
           text={text}
           onTextChange={setText}
