@@ -1,7 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDownload } from '@fortawesome/free-solid-svg-icons';
-import FontSizeControl from './FontSizeControl';
+import { ShareToVKButton } from 'src/features/shareToVk/ui/ShareToVkButton';
+import { DownloadButton } from 'src/features/download/ui/DownloadButton';
+import { TextControls } from './TextControls';
+
+export type Position = {
+  isTop: boolean;
+  isRight: boolean;
+};
 
 type EditImageProps = {
     imgSrc: string,
@@ -15,12 +20,12 @@ export default function EditImage ({
     region = '',
     grade = '',
 }: EditImageProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [text, setText] = useState('');
   const [textColor, setTextColor] = useState('#ffffff');
   const [fontSize, setFontSize] = useState(30);
   const [fontSizeRegion, setFontSizeRegion] = useState(20);
-  const [p, setTextPosition] = useState({
+  const [position, setPosition] = useState<Position>({
     isTop: false,
     isRight: false,
   });
@@ -53,9 +58,9 @@ export default function EditImage ({
       // Параметры позиционирования
       const lineHeight = fontSize + 10;
       const regionLineHeight = fontSizeRegion + 10;  
-      const startY = p.isTop ? ((text ? 2 : 1) * lineHeight + regionLineHeight) : (canvas.height - regionLineHeight) + 10;
-      const startX = p.isRight ? canvas.width - 30 : 30;
-      ctx.textAlign = p.isRight ? 'right' : 'left';
+      const startY = position.isTop ? ((text ? 2 : 1) * lineHeight + regionLineHeight) : (canvas.height - regionLineHeight) + 10;
+      const startX = position.isRight ? canvas.width - 30 : 30;
+      ctx.textAlign = position.isRight ? 'right' : 'left';
 
       // Формируем строки
       const routeText = `${grade} ${name}`;
@@ -74,77 +79,28 @@ export default function EditImage ({
     };
 
     img.src = imgSrc; // Уже base64 — можно использовать напрямую
-  }, [imgSrc, text, name, region, grade, p.isRight, p.isTop, textColor, fontSize, fontSizeRegion]);
-
-  const downloadImage = () => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const link = document.createElement('a');
-    link.download = 'my-route.jpg';
-    link.href = canvas.toDataURL('image/jpeg', 1); // JPEG с качеством 100%
-    link.click();
-  };
-
-  const onTextPositionClick = (top: boolean, right: boolean) => () => {
-    setTextPosition({ isTop: top, isRight: right });
-  }
+  }, [
+    imgSrc, text, name, region, grade, position.isRight, position.isTop,
+    textColor, fontSize, fontSizeRegion
+  ]);
 
   return (
     <div className="mf-edit-image">
     <div className="flex flex-wrap justify-center mb-3 mt-1 items-center" >
-        <div className="mr-5" >
-            <input
-                type="text"
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                placeholder="Введите текст"
-                className="px-3 py-1 w-[200px] rounded-md border-2 border-cyan-700 focus:border-pink-700 focus:outline-none" 
-            />
-        </div>
-        <div className="flex flex-wrap rounded-md w-8 h-8 border-2 border-cyan-700 overflow-hidden transition-shadow mr-5">
-          <div className={`w-1/2 h-1/2 ${p.isTop && !p.isRight ? 'bg-pink-700' : 'cursor-pointer hover:bg-cyan-700'}`}
-            onClick={onTextPositionClick(true, false)}
-          ></div>
-          <div className={`w-1/2 h-1/2 ${p.isTop && p.isRight ? 'bg-pink-700' : 'cursor-pointer hover:bg-cyan-700'}`}
-            onClick={onTextPositionClick(true, true)}
-          ></div>
-          <div className={`w-1/2 h-1/2 ${!p.isTop && !p.isRight ? 'bg-pink-700' : 'cursor-pointer hover:bg-cyan-700'}`}
-            onClick={onTextPositionClick(false, false)}
-          ></div>
-          <div className={`w-1/2 h-1/2 ${!p.isTop && p.isRight ? 'bg-pink-700' : 'cursor-pointer hover:bg-cyan-700'}`}
-            onClick={onTextPositionClick(false, true)}
-          ></div>
-        </div>
-        <div className="mr-5">
-            <FontSizeControl
-                value={fontSize}
-                defaultValue={30}
-                onChange={(val: number) => setFontSize(val)}
-            />
-        </div>
-        <div className="mr-5">
-            <FontSizeControl
-                value={fontSizeRegion}
-                defaultValue={20}
-                onChange={(val: number) => setFontSizeRegion(val)}
-            />
-        </div>
-        <div className="mr-5">
-          <input
-            type="color"
-            value={textColor}
-            onChange={(e) => setTextColor(e.target.value)}
-            className="w-8 h-8 cursor-pointer rounded-md border-2 border-cyan-700 focus:border-pink-700 focus:outline-none"
-            title="Выберите цвет текста"
-          />
-        </div>
-        <FontAwesomeIcon
-            icon={faDownload}
-            className="text-2xl cursor-pointer text-cyan-700 hover:text-pink-700 mt-1 h-5 w-5" 
-            onClick={downloadImage}
-            aria-label={`скачать изображение`}
+        <TextControls
+          text={text}
+          onTextChange={setText}
+          textColor={textColor}
+          onColorChange={setTextColor}
+          fontSize={fontSize}
+          onFontSizeChange={setFontSize}
+          fontSizeRegion={fontSizeRegion}
+          onFontSizeRegionChange={setFontSizeRegion}
+          position={position}
+          onPositionChange={(top, right) => setPosition({ isTop: top, isRight: right })}
         />
+        <DownloadButton canvasRef={canvasRef} />
+        <ShareToVKButton canvasRef={canvasRef} />
       </div>
       <div className="flex justify-center overflow-auto">
         <canvas

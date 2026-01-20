@@ -4,6 +4,14 @@ import type { NextConfig } from 'next';
 
 module.exports = {
   headers: async () => {
+    const isProduction = process.env.NODE_ENV === 'production';
+    const scriptSrc = isProduction
+      ? "'self' https://i-climbed-card.vercel.app"
+      : "'self' 'unsafe-eval' http://localhost:3000 http://localhost:3001 https://i-climbed-card.vercel.app"; // ← добавлен localhost
+
+    const connectSrc = isProduction
+      ? "'self' https://i-climbed-card.vercel.app https://api.imgbb.com"
+      : "'self' http://localhost:3000 http://localhost:3001 https://i-climbed-card.vercel.app https://api.imgbb.com"; // ← для API/dev server
     return [
       // 1. CORS для remoteEntry.js
       {
@@ -16,7 +24,10 @@ module.exports = {
       {
         source: '/(.*)', // Применяется ко всем маршрутам
         headers: [
-          { key: 'Content-Security-Policy', value: "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none';" },
+          {
+            key: 'Content-Security-Policy',
+            value: `default-src 'self'; script-src ${scriptSrc}; connect-src ${connectSrc}; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self';`,
+          },
           { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains; preload' },
