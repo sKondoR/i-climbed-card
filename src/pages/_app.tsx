@@ -1,6 +1,6 @@
 import React from 'react';
 import EditImage from '../ui/EditImage';
-import './globals.css';
+import '../globals.css';
 import imageMock from 'src/mocks/image.json';
 
 export interface EditImageProps {

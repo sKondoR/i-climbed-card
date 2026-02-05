@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ShareToVKButton } from 'src/features/shareToVk/ui/ShareToVkButton';
 import { DownloadButton } from 'src/features/download/ui/DownloadButton';
 import { TextControls } from './TextControls';
+import '../globals.css';
 
 export type Position = {
   isTop: boolean;
